@@ -25,7 +25,7 @@ const AddForm = ({ onAddTask }) => {
       status,
     };
 
-    //добавляем новое задание
+    //добавляем новое задание в массив tasks
     onAddTask(newTask);
 
     //очищаем поля формы после добавления нового задания
@@ -37,7 +37,7 @@ const AddForm = ({ onAddTask }) => {
   return (
     <div>
       <h2>Добавить задачу</h2>
-      <form>
+      <form className="form-container">
         <label>
           Заголовок:
           <input

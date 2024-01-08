@@ -1,6 +1,5 @@
-// Task.js
-
 import React, { useState } from 'react';
+import './Task.css';
 
 const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
   const [isChecked, setIsChecked] = useState(false);

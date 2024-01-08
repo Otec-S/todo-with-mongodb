@@ -1,6 +1,6 @@
 body {
   font-family: 'Inter', 'Arial', sans-serif;
-  background-color: #f2f2f2;
+  background-color: #CDCDCD;
   margin: 0;
   padding: 0;
 }
@@ -12,7 +12,5 @@ body {
   padding: 20px;
 }
 
-h1 {
-  color: #333;
-}
+*{border: 1px solid blue;}
 
