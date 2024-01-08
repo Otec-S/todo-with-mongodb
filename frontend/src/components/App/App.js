@@ -8,6 +8,8 @@ const App = () => {
   //стейт с массивом всех заданий
   const [tasks, setTasks] = useState([]);
 
+  console.log("tasks:", tasks);
+
   //добавление нового задания в массив заданий
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CheckBox from "../CheckBox/CheckBox";
 import "./Task.css";
 
@@ -18,6 +18,29 @@ const Task = ({
   const [editedDescription, setEditedDescription] = useState(task.description);
   //стейт состояние выбора статуса
   const [selectedStatus, setSelectedStatus] = useState(task.status);
+  //стейт нажатия на чекбокс
+  const [isChecked, setIsChecked] = useState(false);
+
+  //эффект проверяет состояние нажатия на чекбокс
+  //если обнаруживает нажатый, то запускает функцию удаления этого задания
+  // useEffect(() => {
+  //   //функция срабатывает при нажатии на чекбокс
+  //   const handleCheckboxChange = async () => {
+  //     setIsChecked(true);
+  //     await onDeleteTask(task.id);
+  //   };
+
+  //   if (isChecked) {
+  //     handleCheckboxChange();
+  //   }
+  // }, [isChecked, onDeleteTask, task.id]);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    setTimeout(() => {
+      onDeleteTask(task.id);
+    }, 1000);
+  };
 
   //функция устанавливает значения выбранного поля в стейт статуса и обновляет статус и вызывает функцию обновления статуса глобально
   //????????? возможно тут задвоение функционала
@@ -41,12 +64,12 @@ const Task = ({
 
   return (
     <div className="task">
-      <CheckBox />
+      <CheckBox onChange={handleCheckboxChange} />
       <div className="task__content">
         {isEditing ? (
           <>
             <input
-            className="task__text-bold"
+              className="task__text-bold"
               type="text"
               value={editedTitle}
               // обновляем местные стейты
@@ -61,7 +84,8 @@ const Task = ({
         ) : (
           <>
             <p className="task__text">
-              <span className="task__text-bold">{task.title}:</span> {task.description}
+              <span className="task__text-bold">{task.title}:</span>{" "}
+              {task.description}
             </p>
             <div className="task__service-part">
               <select value={selectedStatus} onChange={handleStatusChange}>

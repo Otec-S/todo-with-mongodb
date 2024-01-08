@@ -12,6 +12,8 @@ const TaskList = ({
   return (
     
       <div className="task-list">
+        {}
+        
         <h2>Текущие задачи</h2>
         {tasks.map((task) => (
           <Task
