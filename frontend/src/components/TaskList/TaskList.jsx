@@ -10,22 +10,23 @@ const TaskList = ({
   onUpdateTaskDescription,
 }) => {
   return (
-    
-      <div className="task-list">
-        {}
-        
-        <h2>Текущие задачи</h2>
-        {tasks.map((task) => (
-          <Task
-            key={task.id}
-            task={task}
-            onDeleteTask={onDeleteTask}
-            onUpdateTaskStatus={onUpdateTaskStatus}
-            onUpdateTaskTitle={onUpdateTaskTitle}
-            onUpdateTaskDescription={onUpdateTaskDescription}
-          />
-        ))}
-      </div>
+    <div className="task-list">
+      {tasks.length > 0 && (
+        <>
+          <h2>Текущие задачи</h2>
+          {tasks.map((task) => (
+            <Task
+              key={task.id}
+              task={task}
+              onDeleteTask={onDeleteTask}
+              onUpdateTaskStatus={onUpdateTaskStatus}
+              onUpdateTaskTitle={onUpdateTaskTitle}
+              onUpdateTaskDescription={onUpdateTaskDescription}
+            />
+          ))}
+        </>
+      )}
+    </div>
   );
 };
 
