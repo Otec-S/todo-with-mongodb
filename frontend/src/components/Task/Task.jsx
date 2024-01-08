@@ -46,6 +46,7 @@ const Task = ({
         {isEditing ? (
           <>
             <input
+            className="task__text-bold"
               type="text"
               value={editedTitle}
               // обновляем местные стейты
@@ -60,7 +61,7 @@ const Task = ({
         ) : (
           <>
             <p className="task__text">
-              {task.title}: {task.description}
+              <span className="task__text-bold">{task.title}:</span> {task.description}
             </p>
             <div className="task__service-part">
               <select value={selectedStatus} onChange={handleStatusChange}>

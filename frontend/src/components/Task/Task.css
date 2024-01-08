@@ -30,3 +30,6 @@ padding: 10px;
   word-wrap: break-word;
 }
 
+.task__text-bold {
+  font-weight: 900;
+}
