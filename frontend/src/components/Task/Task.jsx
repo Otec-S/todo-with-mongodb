@@ -1,3 +1,5 @@
+// Task.js
+
 import React, { useState } from 'react';
 
 const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
@@ -34,13 +36,28 @@ const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
     setEditedText(e.target.value);
   };
 
+  const formattedDate = new Date(task.createdAt).toLocaleString();
+
   return (
     <div>
       <label style={{ display: 'flex', alignItems: 'center' }}>
-        <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
-        <div style={{ marginLeft: '8px' }}>
+        <input
+          type="checkbox"
+          style={{
+            borderRadius: '50%', // Делаем чекбокс круглым
+            appearance: 'none',
+            width: '16px',
+            height: '16px',
+            marginRight: '8px',
+          }}
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+        <div>
           {isChecked ? (
-            <span>✔ {task.title}</span>
+            <span>
+              &#8226; {task.title} (Создано: {formattedDate})
+            </span>
           ) : isEditing ? (
             <>
               <input type="text" value={editedText} onChange={handleTextChange} />
@@ -48,7 +65,9 @@ const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
             </>
           ) : (
             <>
-              <span>{task.title}</span>
+              <span>
+                {task.title} (Создано: {formattedDate})
+              </span>
               <select value={selectedStatus} onChange={handleStatusChange}>
                 <option value="выполнено">выполнено</option>
                 <option value="в процессе">в процессе</option>
