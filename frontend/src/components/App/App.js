@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 import TaskList from "../TaskList/TaskList";
 import AddForm from "../AddForm/AddForm";
-import CheckBox from "../CheckBox/CheckBox";
 import "./App.css";
 
 const App = () => {
@@ -61,7 +60,6 @@ const App = () => {
         onUpdateTaskTitle={updateTaskTitle}
         onUpdateTaskDescription={updateTaskDescription}
       />
-      <CheckBox/>
     </div>
   );
 };

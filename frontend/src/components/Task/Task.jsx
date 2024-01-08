@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import CheckBox from "../CheckBox/CheckBox";
 import "./Task.css";
 
-const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskDescription, onUpdateTaskTitle }) => {
+const Task = ({
+  task,
+  onDeleteTask,
+  onUpdateTaskStatus,
+  onUpdateTaskDescription,
+  onUpdateTaskTitle,
+}) => {
   //стейт булева состояния редактирования текста
   const [isEditing, setIsEditing] = useState(false);
   //стейт состояние редактирования заголовка
@@ -11,7 +18,6 @@ const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskDescription,
   const [editedDescription, setEditedDescription] = useState(task.description);
   //стейт состояние выбора статуса
   const [selectedStatus, setSelectedStatus] = useState(task.status);
-
 
   //функция устанавливает значения выбранного поля в стейт статуса и обновляет статус и вызывает функцию обновления статуса глобально
   //????????? возможно тут задвоение функционала
@@ -33,10 +39,10 @@ const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskDescription,
     onUpdateTaskDescription(task.id, editedDescription);
   };
 
-
   return (
-    <div>
-      <label>
+    <div className="task">
+      <CheckBox />
+      <div className="task__content">
         {isEditing ? (
           <>
             <input
@@ -53,17 +59,19 @@ const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskDescription,
           </>
         ) : (
           <>
-            {task.title}: {task.description}
-            <select value={selectedStatus} onChange={handleStatusChange}>
-              <option value="в процессе">в процессе</option>
-              <option value="ожидает выполнения">ожидает выполнения</option>
-            </select>
-            <button onClick={handleEditClick}>
-              Редактировать задачу
-            </button>
+            <p className="task__text">
+              {task.title}: {task.description}
+            </p>
+            <div className="task__service-part">
+              <select value={selectedStatus} onChange={handleStatusChange}>
+                <option value="в процессе">в процессе</option>
+                <option value="ожидает выполнения">ожидает выполнения</option>
+              </select>
+              <button onClick={handleEditClick}>Редактировать задачу</button>
+            </div>
           </>
         )}
-      </label>
+      </div>
     </div>
   );
 };
