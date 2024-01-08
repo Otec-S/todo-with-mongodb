@@ -18,7 +18,7 @@ body {
   width: 100%;
   max-width: 1280px;
 
-  font-family: "Inter", "Atial", sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
 
@@ -30,4 +30,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
+
+  border: 1px solid #000;
 }
