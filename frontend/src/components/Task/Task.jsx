@@ -2,80 +2,50 @@ import React, { useState } from 'react';
 import './Task.css';
 
 const Task = ({ task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
-  const [isChecked, setIsChecked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(task.title);
+  const [editedDescription, setEditedDescription] = useState(task.description);
   const [selectedStatus, setSelectedStatus] = useState(task.status);
 
-  const handleCheckboxChange = () => {
-    if (!isChecked) {
-      setIsChecked(true);
-      setTimeout(() => {
-        onDeleteTask(task.id);
-      }, 1000);
-    }
-  };
-
   const handleStatusChange = (e) => {
-    const newStatus = e.target.value;
-    setSelectedStatus(newStatus);
-    onUpdateTaskStatus(task.id, newStatus);
+    setSelectedStatus(e.target.value);
+    onUpdateTaskStatus(task.id, e.target.value);
   };
 
   const handleEditClick = () => {
-    setIsEditing(true);
+    setIsEditing(!isEditing);
   };
 
   const handleSaveClick = () => {
     setIsEditing(false);
-    onUpdateTaskText(task.id, editedText);
+    onUpdateTaskText(task.id, editedText, editedDescription);
   };
 
-  const handleTextChange = (e) => {
-    setEditedText(e.target.value);
+  const handleTaskClick = () => {
+    // Добавьте здесь логику, если необходимо выполнить какие-то действия при клике на задачу
   };
-
-  const formattedDate = new Date(task.createdAt).toLocaleString();
 
   return (
-    <div>
-      <label style={{ display: 'flex', alignItems: 'center' }}>
-        <input
-          type="checkbox"
-          style={{
-            borderRadius: '50%', // Делаем чекбокс круглым
-            appearance: 'none',
-            width: '16px',
-            height: '16px',
-            marginRight: '8px',
-          }}
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        />
-        <div>
-          {isChecked ? (
-            <span>
-              &#8226; {task.title} (Создано: {formattedDate})
-            </span>
-          ) : isEditing ? (
-            <>
-              <input type="text" value={editedText} onChange={handleTextChange} />
-              <button onClick={handleSaveClick}>Сохранить</button>
-            </>
-          ) : (
-            <>
-              <span>
-                {task.title} (Создано: {formattedDate})
-              </span>
-              <select value={selectedStatus} onChange={handleStatusChange}>
-                <option value="выполнено">выполнено</option>
-                <option value="в процессе">в процессе</option>
-                <option value="ожидает выполнения">ожидает выполнения</option>
-              </select>
-              <button onClick={handleEditClick}>Редактировать задачу</button>
-            </>
-          )}
-        </div>
+    <div onClick={handleTaskClick}>
+      <label>
+        {isEditing ? (
+          <>
+            <input type="text" value={editedText} onChange={(e) => setEditedText(e.target.value)} />
+            <textarea value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)} />
+            <button onClick={handleSaveClick}>Сохранить</button>
+          </>
+        ) : (
+          <>
+            {task.title} - {task.description}
+            <select value={selectedStatus} onChange={handleStatusChange}>
+              <option value="в процессе">в процессе</option>
+              <option value="ожидает выполнения">ожидает выполнения</option>
+            </select>
+            <button onClick={handleEditClick}>
+              {isEditing ? 'Отменить' : 'Редактировать задачу'}
+            </button>
+          </>
+        )}
       </label>
     </div>
   );
