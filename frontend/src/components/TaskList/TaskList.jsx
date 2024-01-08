@@ -1,9 +1,14 @@
-import React from 'react';
-import Task from '../Task/Task';
-import './TaskList.css';
+import React from "react";
+import Task from "../Task/Task";
+import "./TaskList.css";
 
-
-const TaskList = ({ tasks, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText }) => {
+const TaskList = ({
+  tasks,
+  onDeleteTask,
+  onUpdateTaskStatus,
+  onUpdateTaskTitle,
+  onUpdateTaskDescription,
+}) => {
   return (
     <div>
       {tasks.map((task) => (
@@ -12,7 +17,8 @@ const TaskList = ({ tasks, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText })
           task={task}
           onDeleteTask={onDeleteTask}
           onUpdateTaskStatus={onUpdateTaskStatus}
-          onUpdateTaskText={onUpdateTaskText}
+          onUpdateTaskTitle={onUpdateTaskTitle}
+          onUpdateTaskDescription={onUpdateTaskDescription}
         />
       ))}
     </div>

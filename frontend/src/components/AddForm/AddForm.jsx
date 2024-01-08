@@ -6,18 +6,16 @@ const AddForm = ({ onAddTask }) => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("ожидает выполнения");
 
+  //функция запускается по клику на Добавить задачу
   const handleAddTask = () => {
-    if (!title) {
-      alert("Пожалуйста, введите заголовок задачи");
+    
+    //проверки заполненности полей
+    if (!title || !description) {
+      alert("Пожалуйста, заполните все поля формы");
       return;
     }
 
-    if (!description) {
-      alert("Пожалуйста, введите описание задачи");
-      return;
-    }
-
-    //создаем объект с новым заданием
+    //создаем объект с новым заданием из данных формы
     const newTask = {
       id: Date.now(), // уникальный идентификатор
       title,
@@ -25,7 +23,7 @@ const AddForm = ({ onAddTask }) => {
       status,
     };
 
-    //добавляем новое задание в массив tasks
+    //добавляем новое задание в массив tasks (функция в App.js)
     onAddTask(newTask);
 
     //очищаем поля формы после добавления нового задания
