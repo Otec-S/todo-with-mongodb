@@ -14,7 +14,6 @@ import "./App.css";
 const App = () => {
   //стейт с массивом всех заданий
   const [tasks, setTasks] = useState([]);
-  console.log(tasks);
 
   //ПОЛУЧЕНИЕ массива заданий с бэка
   useEffect(() => {
