@@ -8,7 +8,6 @@ const AddForm = ({ onAddTask }) => {
 
   //функция запускается по клику на Добавить задачу
   const handleAddTask = () => {
-    
     //проверки заполненности полей
     if (!title || !description) {
       alert("Пожалуйста, заполните все поля формы");
@@ -17,7 +16,6 @@ const AddForm = ({ onAddTask }) => {
 
     //создаем объект с новым заданием из данных формы
     const newTask = {
-      // id: Date.now(), // уникальный идентификатор
       title,
       description,
       status,

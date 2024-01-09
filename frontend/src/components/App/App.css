@@ -1,6 +1,6 @@
 body {
-  font-family: 'Inter', 'Arial', sans-serif;
-  background-color: #CDCDCD;
+  font-family: "Inter", "Arial", sans-serif;
+  background-color: #cdcdcd;
   margin: 0;
   padding: 0;
 }
@@ -11,6 +11,3 @@ body {
   margin: auto;
   padding: 20px;
 }
-
-/* *{border: 1px solid blue;} */
-

@@ -16,7 +16,6 @@ export const getAllTodos = async () => {
 };
 
 //создание нового задания
-//передаем объект
 export const createTodo = async (todoData) => {
   try {
     const response = await fetch(`${API_URL}/todos`, {
@@ -38,7 +37,6 @@ export const createTodo = async (todoData) => {
 };
 
 //обновление задачи
-//todoData - это объект вероятно
 export const updateTodo = async (id, todoData) => {
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {

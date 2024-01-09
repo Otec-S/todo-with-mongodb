@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Todo = require("../models/item"); // Путь к модели Todo
+const Todo = require("../models/item");
 
 // Эндпоинт для получения списка всех задач
 router.get("/todos", async (req, res) => {

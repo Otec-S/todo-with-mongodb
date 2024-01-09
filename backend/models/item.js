@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Определение схемы для задачи (Todo)
 const todoSchema = new mongoose.Schema({
@@ -8,12 +8,12 @@ const todoSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    default: '',
+    default: "",
   },
   status: {
     type: String,
-    enum: ['выполнено', 'в процессе', 'ожидает выполнения'],
-    default: 'ожидает выполнения',
+    enum: ["выполнено", "в процессе", "ожидает выполнения"],
+    default: "ожидает выполнения",
   },
   createdAt: {
     type: Date,
@@ -22,7 +22,7 @@ const todoSchema = new mongoose.Schema({
 });
 
 // Создание модели для задачи
-const Todo = mongoose.model('Todo', todoSchema);
+const Todo = mongoose.model("Todo", todoSchema);
 
 // Экспорт модели
 module.exports = Todo;

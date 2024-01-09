@@ -6,7 +6,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const routes = require("./controllers/item");
 
-
 //cors
 const options = {
   origin: ["http://localhost:3000"],
@@ -39,8 +38,5 @@ mongoose
 app.use(routes);
 
 app.listen(PORT, () => {
-  // Если всё работает, консоль покажет, какой порт слушает приложение
   console.log(`Приложение слушает порт ${PORT}`);
 });
-
-//проверка бэка

@@ -3,44 +3,27 @@ import CheckBox from "../CheckBox/CheckBox";
 import "./Task.css";
 
 const Task = ({
-  task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskFields
+  task,
+  onDeleteTask,
+  onUpdateTaskStatus,
+  onUpdateTaskFields,
 }) => {
   //стейт булева состояния редактирования текста
   const [isEditing, setIsEditing] = useState(false);
   //стейт состояние редактирования заголовка
-  //??????? вероятно следует заменить на title
   const [editedTitle, setEditedTitle] = useState(task.title);
   //стейт состояние редактирования описания
   const [editedDescription, setEditedDescription] = useState(task.description);
   //стейт состояние выбора статуса
   const [selectedStatus, setSelectedStatus] = useState(task.status);
-  //стейт нажатия на чекбокс
-  const [isChecked, setIsChecked] = useState(false);
-
-  //эффект проверяет состояние нажатия на чекбокс
-  //если обнаруживает нажатый, то запускает функцию удаления этого задания
-  // useEffect(() => {
-  //   //функция срабатывает при нажатии на чекбокс
-  //   const handleCheckboxChange = async () => {
-  //     setIsChecked(true);
-  //     await onDeleteTask(task.id);
-  //   };
-
-  //   if (isChecked) {
-  //     handleCheckboxChange();
-  //   }
-  // }, [isChecked, onDeleteTask, task.id]);
 
   const handleCheckboxChange = () => {
-    // setIsChecked(!isChecked);
     setTimeout(() => {
       onDeleteTask(task._id);
     }, 1000);
-    // onDeleteTask(task._id);
   };
 
-  //функция устанавливает значения выбранного поля в стейт статуса и обновляет статус и вызывает функцию обновления статуса глобально
-  //????????? возможно тут задвоение функционала
+  //функция устанавливает значения выбранного поля в стейт статуса
   const handleStatusChange = (e) => {
     setSelectedStatus(e.target.value);
     onUpdateTaskStatus(task._id, e.target.value);
@@ -54,9 +37,7 @@ const Task = ({
   //клик по кнопке Сохранить меняет булев статус isEditing на false
   const handleSaveClick = () => {
     setIsEditing(false);
-    //функции обновляют глобальные стейты заголовка и описания
-    // onUpdateTaskTitle(task.id, editedTitle);
-    // onUpdateTaskDescription(task.id, editedDescription);
+    //функции обновляют поля задания
     onUpdateTaskFields(task._id, editedTitle, editedDescription);
   };
 
@@ -70,7 +51,6 @@ const Task = ({
               className="task__text-bold"
               type="text"
               value={editedTitle}
-              // обновляем местные стейты
               onChange={(e) => setEditedTitle(e.target.value)}
             />
             <textarea
