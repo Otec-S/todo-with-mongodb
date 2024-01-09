@@ -11,18 +11,21 @@ const TaskList = ({
   return (
     <div className="task-list">
       {tasks.length > 0 && (
-        <>
+        <section>
           <h2>Текущие задачи</h2>
-          {tasks.map((task) => (
-            <Task
-              key={task._id}
-              task={task}
-              onDeleteTask={onDeleteTask}
-              onUpdateTaskFields={onUpdateTaskFields}
-              onUpdateTaskStatus={onUpdateTaskStatus}
-            />
-          ))}
-        </>
+          <ul>
+            {tasks.map((task) => (
+              <li key={task._id}>
+                <Task
+                  task={task}
+                  onDeleteTask={onDeleteTask}
+                  onUpdateTaskFields={onUpdateTaskFields}
+                  onUpdateTaskStatus={onUpdateTaskStatus}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
     </div>
   );

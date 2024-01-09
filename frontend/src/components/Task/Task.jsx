@@ -42,7 +42,7 @@ const Task = ({
   };
 
   return (
-    <div className="task">
+    <article className="task">
       <CheckBox onChange={handleCheckboxChange} />
       <div className="task__content">
         {isEditing ? (
@@ -75,7 +75,7 @@ const Task = ({
           </>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 

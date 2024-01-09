@@ -31,7 +31,7 @@ const AddForm = ({ onAddTask }) => {
   };
 
   return (
-    <div>
+    <section>
       <h2>Добавить задачу</h2>
       <form className="form-container">
         <label>
@@ -63,7 +63,7 @@ const AddForm = ({ onAddTask }) => {
           Добавить задачу
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

@@ -1,25 +1,24 @@
 const mongoose = require("mongoose");
 
 // Определение схемы для задачи (Todo)
-const todoSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
+const todoSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    status: {
+      type: String,
+      enum: ["выполнено", "в процессе", "ожидает выполнения"],
+      default: "ожидает выполнения",
+    },
   },
-  description: {
-    type: String,
-    default: "",
-  },
-  status: {
-    type: String,
-    enum: ["выполнено", "в процессе", "ожидает выполнения"],
-    default: "ожидает выполнения",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { versionKey: false }
+);
 
 // Создание модели для задачи
 const Todo = mongoose.model("Todo", todoSchema);
