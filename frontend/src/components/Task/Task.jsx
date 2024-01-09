@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CheckBox from "../CheckBox/CheckBox";
 import "./Task.css";
 
 const Task = ({
-  task,
-  onDeleteTask,
-  onUpdateTaskStatus,
-  onUpdateTaskDescription,
-  onUpdateTaskTitle,
+  task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText
 }) => {
   //стейт булева состояния редактирования текста
   const [isEditing, setIsEditing] = useState(false);
@@ -36,10 +32,11 @@ const Task = ({
   // }, [isChecked, onDeleteTask, task.id]);
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    // setIsChecked(!isChecked);
     setTimeout(() => {
-      onDeleteTask(task.id);
+      onDeleteTask(task._id);
     }, 1000);
+    // onDeleteTask(task._id);
   };
 
   //функция устанавливает значения выбранного поля в стейт статуса и обновляет статус и вызывает функцию обновления статуса глобально
@@ -58,8 +55,8 @@ const Task = ({
   const handleSaveClick = () => {
     setIsEditing(false);
     //функции обновляют глобальные стейты заголовка и описания
-    onUpdateTaskTitle(task.id, editedTitle);
-    onUpdateTaskDescription(task.id, editedDescription);
+    // onUpdateTaskTitle(task.id, editedTitle);
+    // onUpdateTaskDescription(task.id, editedDescription);
   };
 
   return (

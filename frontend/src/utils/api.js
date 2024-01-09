@@ -1,5 +1,6 @@
-const API_URL = "http://localhost:4000";
+import API_URL from "./constants.js";
 
+//получение массива заданий
 export const getAllTodos = async () => {
   try {
     const response = await fetch(`${API_URL}/todos`);
@@ -14,6 +15,8 @@ export const getAllTodos = async () => {
   }
 };
 
+//создание нового задания
+//передаем объект
 export const createTodo = async (todoData) => {
   try {
     const response = await fetch(`${API_URL}/todos`, {
@@ -34,6 +37,8 @@ export const createTodo = async (todoData) => {
   }
 };
 
+//обновление задачи
+//todoData - это объект вероятно
 export const updateTodo = async (id, todoData) => {
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {
@@ -54,6 +59,7 @@ export const updateTodo = async (id, todoData) => {
   }
 };
 
+//удаляем задачу
 export const deleteTodo = async (id) => {
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {

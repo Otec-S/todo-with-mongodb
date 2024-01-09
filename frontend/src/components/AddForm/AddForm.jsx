@@ -17,7 +17,7 @@ const AddForm = ({ onAddTask }) => {
 
     //создаем объект с новым заданием из данных формы
     const newTask = {
-      id: Date.now(), // уникальный идентификатор
+      // id: Date.now(), // уникальный идентификатор
       title,
       description,
       status,
