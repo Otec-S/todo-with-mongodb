@@ -3,7 +3,7 @@ import CheckBox from "../CheckBox/CheckBox";
 import "./Task.css";
 
 const Task = ({
-  task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskText
+  task, onDeleteTask, onUpdateTaskStatus, onUpdateTaskFields
 }) => {
   //стейт булева состояния редактирования текста
   const [isEditing, setIsEditing] = useState(false);
@@ -43,7 +43,7 @@ const Task = ({
   //????????? возможно тут задвоение функционала
   const handleStatusChange = (e) => {
     setSelectedStatus(e.target.value);
-    onUpdateTaskStatus(task.id, e.target.value);
+    onUpdateTaskStatus(task._id, e.target.value);
   };
 
   //по клику на кнопку Редактировать меняется булев статус isEditing на true
@@ -57,6 +57,7 @@ const Task = ({
     //функции обновляют глобальные стейты заголовка и описания
     // onUpdateTaskTitle(task.id, editedTitle);
     // onUpdateTaskDescription(task.id, editedDescription);
+    onUpdateTaskFields(task._id, editedTitle, editedDescription);
   };
 
   return (

@@ -70,36 +70,71 @@ const App = () => {
     }
   };
 
+  const updateTaskFields = async (taskId, newTitle, newDescription) => {
+    try {
+      const updatedTodo = await updateTodo(taskId, {
+        title: newTitle,
+        description: newDescription,
+      });
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === taskId
+            ? {
+                ...task,
+                title: updatedTodo.title,
+                description: updatedTodo.description,
+              }
+            : task
+        )
+      );
+    } catch (error) {
+      console.error("Error updating todo fields:", error);
+    }
+  };
+
   //обновление задания в массиве
   //пробегаем мапом по всему массиву заданий
   //если id полученного функцией задания равен какому-то из массива заданий, обновляем статус задания полученным в функцию статусом с этим id. иначе оставляем без изменений
-  const updateTaskStatus = (taskId, newStatus) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, status: newStatus } : task
-      )
-    );
+  // const updateTaskStatus = (taskId, newStatus) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === taskId ? { ...task, status: newStatus } : task
+  //     )
+  //   );
+  // };
+
+   const updateTaskStatus = async (taskId, newStatus) => {
+    try {
+      const updatedTodo = await updateTodo(taskId, { status: newStatus });
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === taskId ? { ...task, status: updatedTodo.status } : task
+        )
+      );
+    } catch (error) {
+      console.error("Error updating todo status:", error);
+    }
   };
 
   //пробегаем мапом по всему массиву заданий
   //одновление заголовка задания
-  const updateTaskTitle = (taskId, newTitle) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, title: newTitle } : task
-      )
-    );
-  };
+  // const updateTaskTitle = (taskId, newTitle) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === taskId ? { ...task, title: newTitle } : task
+  //     )
+  //   );
+  // };
 
   //пробегаем мапом по всему массиву заданий
   //одновление описания задания
-  const updateTaskDescription = (taskId, newDescription) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, description: newDescription } : task
-      )
-    );
-  };
+  // const updateTaskDescription = (taskId, newDescription) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === taskId ? { ...task, description: newDescription } : task
+  //     )
+  //   );
+  // };
 
   return (
     <div className="App">
@@ -109,9 +144,10 @@ const App = () => {
         tasks={tasks}
         setTasks={setTasks}
         onDeleteTask={deleteTask}
+        onUpdateTaskFields={updateTaskFields}
         onUpdateTaskStatus={updateTaskStatus}
-        onUpdateTaskTitle={updateTaskTitle}
-        onUpdateTaskDescription={updateTaskDescription}
+        // onUpdateTaskTitle={updateTaskTitle}
+        // onUpdateTaskDescription={updateTaskDescription}
       />
     </div>
   );

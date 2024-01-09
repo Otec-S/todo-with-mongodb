@@ -7,9 +7,10 @@ const TaskList = ({
   tasks,
   setTasks,
   onDeleteTask,
-  // onUpdateTaskStatus,
+  onUpdateTaskStatus,
   // onUpdateTaskTitle,
   onUpdateTaskDescription,
+  onUpdateTaskFields
 }) => {
 
   // //получение списка задач с бэка
@@ -37,39 +38,41 @@ const TaskList = ({
   // };
 
   //обновление статуса задачи
-  const onUpdateTaskStatus = async (taskId, newStatus) => {
-    try {
-      const updatedTodo = await updateTodo(taskId, { status: newStatus });
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task._id === taskId ? { ...task, status: updatedTodo.status } : task
-        )
-      );
-    } catch (error) {
-      console.error("Error updating todo status:", error);
-    }
-  };
+  // const onUpdateTaskStatus = async (taskId, newStatus) => {
+  //   try {
+  //     const updatedTodo = await updateTodo(taskId, { status: newStatus });
+  //     setTasks((prevTasks) =>
+  //       prevTasks.map((task) =>
+  //         task._id === taskId ? { ...task, status: updatedTodo.status } : task
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.error("Error updating todo status:", error);
+  //   }
+  // };
 
-  //обновление текста задачи
-  const onUpdateTaskTitle = async (taskId, newTitle) => {
-    try {
-      const updatedTodo = await updateTodo(taskId, {
-        title: newTitle,
-        // description: newDescription,
-      });
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === taskId
-            ? { ...task, title: updatedTodo.title,
-              // description: updatedTodo.description
-             }
-            : task
-        )
-      );
-    } catch (error) {
-      console.error("Error updating todo text:", error);
-    }
-  };
+  //обновление полей задачи
+  // const onUpdateTask = async (taskId, newTitle, newDescription, newStatus) => {
+  //   try {
+  //     const updatedTodo = await updateTodo(taskId, {
+  //       title: newTitle,
+  //       description: newDescription,
+  //       status: newStatus
+  //     });
+  //     setTasks((prevTasks) =>
+  //       prevTasks.map((task) =>
+  //         task._id === taskId
+  //           ? { ...task, title: updatedTodo.title,
+  //             description: updatedTodo.description,
+  //             status: updatedTodo.newStatus
+  //            }
+  //           : task
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.error("Error updating todo text:", error);
+  //   }
+  // };
 
 
 
@@ -83,9 +86,11 @@ const TaskList = ({
               key={task._id}
               task={task}
               onDeleteTask={onDeleteTask}
+              onUpdateTaskFields={onUpdateTaskFields}
+
               onUpdateTaskStatus={onUpdateTaskStatus}
-              onUpdateTaskTitle={onUpdateTaskTitle}
-              onUpdateTaskDescription={onUpdateTaskDescription}
+              // onUpdateTaskTitle={onUpdateTaskTitle}
+              // onUpdateTaskDescription={onUpdateTaskDescription}
             />
           ))}
         </>
